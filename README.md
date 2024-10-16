@@ -1,12 +1,12 @@
 # word_count
-Architecture of Distributed System
+  Architecture of Distributed System
 
 ## 1. Select an algorithm in balancer.py (weighted or hash)
 <image src = "./images/select.png">
   
 ## 2. Launch the server
 ```
-docker-compose up --build
+  docker-compose up --build
 ```
 <image src = "./images/create.png">
   Check the server weighted
