@@ -11,7 +11,7 @@ docker-compose up --build
 <image src = "./images/create.png">
   Check the server weighted
   <image src = "./images/weighted.png"
-    
+
 ## 3. Send request
 ```
 python client_socket_single.py
