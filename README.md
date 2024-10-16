@@ -6,7 +6,7 @@
   
 ## 2. Launch the server
 ```
-  docker-compose up --build
+docker-compose up --build
 ```
 <image src = "./images/create.png">
   Check the server weighted
