@@ -1,5 +1,5 @@
 # word_count
-  Architecture of Distributed System
+  TU/e 2IMN10 Architecture of Distributed System lab assignment
 
 ## 1. Select an algorithm in balancer.py (weighted or hash)
 <image src = "./images/select.png">
