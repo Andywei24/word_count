@@ -1,0 +1,16 @@
+FROM python:3.9
+
+WORKDIR /wordCount
+
+COPY server_socket.py .
+COPY download_files.sh .
+COPY links.txt .
+COPY requirements.txt ./
+
+RUN pip install --no-cache-dir -r requirements.txt
+RUN mkdir -p /wordCount/downloads
+RUN chmod +x download_files.sh
+RUN ./download_files.sh
+
+
+CMD ["python", "server_socket.py"]

@@ -1,0 +1,68 @@
+version: '3'
+services:
+  balancer:
+    build:
+      context: .
+      dockerfile: Dockerfile.balancer
+    ports:
+      - "8090:8090"
+      - "8089:8089"
+    environment:
+      - BALANCER_IP=balancer
+      - BALANCER_PORT=8090
+      - BALANCER_SERVER_PORT=8089
+    networks:
+      - wordcount_network
+
+  server1:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    command: python server_socket.py 8091
+    environment:
+      - SERVER_HOST=server1
+      - SERVER_PORT=8091
+      - BALANCER_HOST=balancer
+      - BALANCER_PORT=8089
+      - REDIS_HOST=redis
+    networks:
+      - wordcount_network
+
+  server2:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    command: python server_socket.py 8092
+    environment:
+      - SERVER_HOST=server2
+      - SERVER_PORT=8092
+      - BALANCER_HOST=balancer
+      - BALANCER_PORT=8089
+      - REDIS_HOST=redis
+    networks:
+      - wordcount_network
+
+  server3:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    command: python server_socket.py 8093
+    environment:
+      - SERVER_HOST=server3
+      - SERVER_PORT=8093
+      - BALANCER_HOST=balancer
+      - BALANCER_PORT=8089
+      - REDIS_HOST=redis
+    networks:
+      - wordcount_network
+
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
+    networks:
+      - wordcount_network
+
+networks:
+  wordcount_network:
+    driver: bridge
